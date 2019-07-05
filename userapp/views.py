@@ -6,55 +6,30 @@ from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
 
-
+from userapp.mixins import Mixins_userapp
 from .forms import AuthorCreationForm, BookCreationForm, WordCreationForm
 from .models import Dictionary, Book, Word
 from phraseapp.models import PhraseModel
 from excerptapp.models import ExcerptModel
 from django.views.generic.list import ListView
 
-@login_required
-def userpage(request):
-    check = 'главная сраница'
-
-    dict_items = Dictionary.objects.filter(user=request.user.pk)
-    phrase_items = PhraseModel.objects.filter(user=request.user.pk)
-    excerpt_items = ExcerptModel.objects.filter(user=request.user.pk)
-
-    content = {
-        'test': check,
-        'dicts': dict_items,
-        'phrases': phrase_items,
-        'excerpts': excerpt_items,
-    }
-
-    return render(request, 'userapp/userpage.html', content)
-
-# class DictionariesListView(ListView):
-#     model = Dictionary
-#     template_name = 'userapp/dictionaries.html'
+# class UserpageListView(ListView): # cbv with two models
+#     template_name = 'userapp/userpage.html'
+#     context_object_name = 'phrases'
 #
-#     @method_decorator(user_passes_test(lambda u: u.is_superuser))
-#     def dispatch(self, *args, **kwargs):
-#         return super().dispatch(*args, **kwargs)
+#     def get_queryset(self): # on template calls as objects
+#         return Dictionary.objects.all()
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(UserpageListView, self).get_context_data(**kwargs) # call get_context_data method via inheritance from class UserpageListView
+#         context['phrases'] = PhraseModel.objects.all() # on template calls as phrases
+#         return context
 
-    # def post(self, request, *args, **kwargs):
-    #     dict_items = Dictionary.objects.filter(user=request.user.pk)
-    #     form = self.form_class(request.POST)
-    #     if form.is_valid():
-    #         # <process form cleaned data>
-    #         response = form.save(commit=False)
-    #         response.user = request.user
-    #         response.save()
-    #         return HttpResponseRedirect(reverse('userapp:dictionaries', args=[request.user.pk]))
-    #     else:
-    #
-    #     content = {
-    #             'user_pk': request.user.pk,
-    #             'dicts': dict_items,
-    #             'author_form': form
-    #         }
-    #     return render(request, self.template_name, content)
+class UserpageListView(Mixins_userapp, View):
+    def get(self, request, *args, **kwargs):
+        mixin_data = super(UserpageListView, self)
+        context = mixin_data.get_context_data()
+        return render(request, 'userapp/userpage.html', context)
 
 @login_required
 def dictionaries(request, user_pk):

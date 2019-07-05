@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f3f3f3;
+}
+
+/*table, tr, td {*/
+    /*table-layout: fixed;*/
+    /*word-wrap: break-word;*/
+    /*border: 1px solid;*/
+    /*border-collapse: collapse;*/
+    /*margin: 10px 10px 80px 10px;*/
+/*}*/
+
+/*td {*/
+    /*width: 300px;*/
+    /*padding-top: 0 !important;*/
+/*}*/
+
+/*.test-input{*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+/*}*/
+/* MAIN(login) PAGE */
+
+.wrapper {
+    max-width: 1200px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-fluid {
+    padding-top: 60px;
+    padding-bottom: 60px !important;
+    /*margin-bottom: 60px;*/
+}
+
+.img-login {
+    max-width: 150px;
+}
+
+.form-control {
+    margin: 2% auto;
+    /*height: 50px;*/
+    /*display: inline;*/
+}
+
+.logo-input-submit {
+    margin: 4% 2% 2% 2%;
+    background: #56b45a;
+    width: 150px;
+    line-height: 40px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: .4s;
+}
+
+.logo-input-submit a {
+    text-decoration: none;
+    color: white;
+}
+
+.logo-input-submit:hover {
+    background: #2c7cb4;
+}
+
+.logo-signup-btn {
+    margin: 2%;
+    background: white;
+    width: 150px;
+    line-height: 40px;
+    cursor: pointer;
+    border: 0.5px solid lightgrey;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: .4s;
+}
+
+.logo-signup-btn a {
+    text-decoration: none;
+    color: #363638;
+}
+
+.logo-signup-btn:hover {
+    background: #272727;
+    border: 0.5px solid #272727;
+}
+
+.logo-signup-btn:hover a {
+    color: white;
+}
+
+h2 {
+    line-height: 100px;
+   font-size: 40px;
+}
+
+.log-info {
+    text-align: center !important;
+}
+
+.signup-btn {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+#reg-helptext ul {
+    list-style: circle;
+}
+
+/* USERPAGE */
+
+.wrapper-userpage {
+    max-width: 1200px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+}
+
+@media (min-width: 768px) {
+    .no-paddings-x {
+        padding: 0 !important;
+    }
+}
+
+.author-btn {
+    border: none;
+    width: 100%;
+    background-color: #e6e6e6;
+}
+
+.author-btn:hover {
+    background-color: #cdcdcd;
+}
+
+.author-btn a {
+    color: #3e3e3e;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.author-btn:hover a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.add-btn {
+    background-color: rgba(44, 144, 203, 0.8);
+}
+
+.add-btn input {
+    color: white;
+}
+
+.add-btn a {
+    color: white;
+}
+
+.add-btn:hover {
+    background-color: rgba(82, 175, 90, 0.69);
+}
+
+.add-btn input {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.input-author {
+    width: 100%;
+    border: none;
+    color: white;
+    background-color: rgba(44, 144, 203, 0.8);
+}
+
+.input-author:hover {
+    background-color: rgba(82, 175, 90, 0.69);
+}
+
+.dic-links {
+    max-height: 90px;
+    padding: 5px;
+    max-width: 100%;
+}
+
+.links-hight {
+    height: 100px;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.accordion-extra {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+}
+
+.card-extra {
+    border-radius: 0;
+    background-color: rgba(236,236,236,0.59);
+    border: none;
+}
+
+.card-body-extra {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.collapse-btn {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 5px;
+    background-color: rgba(236,236,236,0.59);
+    outline: none !important;
+}
+
+.card-header {
+    padding: 0 !important;
+    height: 50px;
+}
+
+/* BOOKEDIT PAGE */
+
+.shadow-bookedit {
+    width: 500px !important;
+}

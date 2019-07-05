@@ -1,0 +1,50 @@
+{% extends "userapp/base.html" %}
+{% load static %}
+
+{% block back %}
+    <li class="nav-item"><a href="{% url 'userapp:userpage' %}" class="nav-link">Back to userpage</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper-userpage">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+
+                <div class="col-md-5 col-sm-12">
+                    <div class="shadow p-1">
+                        <h6 class="text-center">Add excerpt:</h6>
+                        <form action="{% url 'excerptapp:createexcerpts' user_pk=user.pk %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                {% for i in excerpt_form %}
+                                    {{ i }}
+                                {% endfor %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input class="input-author" type="submit" value="Save">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-5 my-1 no-paddings-x">
+                    <div class="shadow py-1">
+                        <h6 class="text-center">Your excerpts:</h6>
+                    {% for i in excerpts %}
+                        <div class="row m-1">
+                            <button class="author-btn">
+                                <a href="{% url 'excerptapp:editexcerpt' user_pk=user.pk excerpt_pk=i.pk %}">{{ i.excerpt }}</a>
+                            </button>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

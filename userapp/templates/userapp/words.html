@@ -1,0 +1,60 @@
+{% extends "userapp/base.html" %}
+{% load static %}
+{% block back %}
+    <li class="nav-item"><a href="{% url 'userapp:books' user_pk=user.pk author_pk=author_pk %}" class="nav-link">Back to Books</a></li>
+{% endblock %}
+{% block content %}
+
+
+    <div class="wrapper-userpage">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+
+                <div class="col-md-3 my-1">
+                    <div class="shadow p-1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="mb-0"><span class="h6">Author:</span> {{ author_name }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="mb-0"><span class="h6">Book:</span> {{ book_title }}</p>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-md-12">
+                                <button class="author-btn add-btn">
+                                    <a href="{% url 'userapp:bookedit' user_pk=user.pk author_pk=author_pk book_pk=book_pk %}">Edit Book Title</a>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="author-btn add-btn">
+                                    <a href="{% url 'userapp:addword' user_pk=user.pk author_pk=author_pk book_pk=book_pk %}">Add word</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 my-1 no-paddings-x">
+                    <div class="shadow p-1">
+                        <h6 class="text-center">Words:</h6>
+                        {% for i in words %}
+                            <div class="row m-1">
+                                <button class="author-btn">
+                                    <a href="{% url 'userapp:wordedit' user_pk=user.pk author_pk=author_pk book_pk=book_pk word_pk=i.pk %}">{{ i.word }} - {{ i.translation }}</a>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

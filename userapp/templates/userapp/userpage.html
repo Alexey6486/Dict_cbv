@@ -1,0 +1,126 @@
+{% extends "userapp/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="wrapper-userpage">
+        <div class="container-fluid">
+            <div class="row justify-content-around">
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 my-1">
+                    <div class="accordion-extra" id="accordionOne">
+                        <div class="card card-extra">
+                            <div class="card-header" id="headingOne">
+                                <button class="collapse-btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <h5 class="text-center mb-0">
+                                        Your dictionaries:
+                                    </h5>
+                                </button>
+                            </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionOne">
+                                <div class="card-body card-body-extra">
+                                    {% for i in dicts %}
+                                        <div class="row m-1">
+                                            <button class="author-btn">
+                                                <a href="{% url 'userapp:books' user_pk=user.pk author_pk=i.pk %}">{{ i.last_name }}</a>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 my-1 no-paddings-x">
+                    <div class="accordion-extra" id="accordionTwo">
+                        <div class="card card-extra">
+                            <div class="card-header" id="headingTwo">
+                                <button class="collapse-btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    <h5 class="text-center mb-0">
+                                        Your phrases:
+                                    </h5>
+                                </button>
+                            </div>
+                            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionTwo">
+                                <div class="card-body card-body-extra">
+                                    {% for i in phrases %}
+                                        <div class="row m-1">
+                                            <button class="author-btn">
+                                                <a href="{% url 'phraseapp:editphrase' user_pk=user.pk phrase_pk=i.pk %}">{{ i.phrase }}</a>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 my-1">
+
+                    <div class="accordion-extra" id="accordionThree">
+
+                        <div class="card card-extra">
+
+                            <div class="card-header" id="headingThree">
+                                <button class="collapse-btn" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                    <h5 class="text-center mb-0">
+                                        Links:
+                                    </h5>
+                                </button>
+                            </div>
+
+                            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionThree">
+                                <div class="card-body card-body-extra">
+
+                                    <div class="row m-1">
+                                        <!--transform style makes .stretched-link applicable only to a particular button, otherwise the whole div with all buttons will be a link-->
+                                        <button class="author-btn links-hight" style="transform: rotate(0);">
+                                            <a class="stretched-link"  href="https://www.multitran.com/" target=”_blank”>
+                                                <img class="dic-links " src="/static/img/multitran.gif" alt="">
+                                            </a>
+                                        </button>
+                                    </div>
+
+                                    <div class="row m-1">
+                                        <button class="author-btn links-hight">
+                                            <a href="https://www.collinsdictionary.com/dictionary/english" target=”_blank”>
+                                                <img class="dic-links" src="/static/img/Collins.png" alt="">
+                                            </a>
+                                        </button>
+                                    </div>
+
+                                    <div class="row m-1 ">
+                                        <button class="author-btn links-hight " >
+                                            <a class="" href="https://context.reverso.net/translation/" target=”_blank”>
+                                                <img class="dic-links" src="/static/img/Reverso.png" alt="">
+                                            </a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--<div class="table-container">-->
+    <!--<table>-->
+        <!--<tr>-->
+            <!--<th>Sourse</th>-->
+            <!--<th>Translation</th>-->
+        <!--</tr>-->
+        <!--{% for i in source %}-->
+        <!--<form action="">-->
+        <!--<tr>-->
+            <!--<td>{{i}}</td>-->
+            <!--<td><input class="test-input" type="text"></td>-->
+        <!--</tr>-->
+        <!--</form>-->
+
+        <!--{% endfor %}-->
+    <!--</table>-->
+<!--</div>-->
+{% endblock %}

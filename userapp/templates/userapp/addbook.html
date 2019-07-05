@@ -1,0 +1,37 @@
+{% extends "userapp/base.html" %}
+{% load static %}
+
+{% block back %}
+    <li class="nav-item"><a href="{% url 'userapp:books' user_pk=user.pk author_pk=author_pk %}" class="nav-link">Back to Books</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper-userpage">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-8 my-1">
+                    <div class="shadow p-1">
+                        <h6 class="text-center">Add book:</h6>
+                        <form action="{% url 'userapp:books' user_pk=user.pk author_pk=author_pk %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                {% for i in book_form %}
+                                    {{ i }}
+                                {% endfor %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input class="input-author" type="submit" value="Save">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "userapp/base.html" %}
+{% load static %}
+{% block back %}
+    <li class="nav-item"><a href="{% url 'userapp:dictionaries' user_pk=user.pk %}" class="nav-link">Back to Authors</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper-userpage">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+
+                <div class="col-md-5 d-none d-md-block my-1">
+                    <div class="shadow p-1 mb-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="mb-0">{{ author_name }}</h6>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="author-btn add-btn">
+                                    <a href="{% url 'userapp:authoredit' user_pk=user.pk author_pk=author_pk %}">Edit author</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shadow p-1">
+                        <h6 class="text-center">Add book:</h6>
+                        <form action="{% url 'userapp:books' user_pk=user.pk author_pk=author_pk %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                {% for i in book_form %}
+                                    {{ i }}
+                                {% endfor %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input class="input-author" type="submit" value="Save">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-xs-12 d-md-none d-sm-block my-1">
+                    <div class="shadow p-1">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h6 class="text-center">{{ author_name }}</h6>
+                            </div>
+                            <div class="col-sm-12">
+                                <button class="author-btn add-btn">
+                                    <a href="{% url 'userapp:authoredit' user_pk=user.pk author_pk=author_pk %}">Edit author</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shadow p-1">
+                        <button class="author-btn add-btn">
+                            <a href="{% url 'userapp:addbook' user_pk=user.pk author_pk=author_pk %}">Add book</a>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 my-1 no-paddings-x">
+                    <div class="shadow py-1">
+                        <h6 class="text-center">Books:</h6>
+                    {% for i in books %}
+                        <div class="row m-1">
+                            <button class="author-btn">
+                                <a href="{% url 'userapp:words' user_pk=user.pk author_pk=author_pk book_pk=i.pk %}">{{ i.title }}</a>
+                            </button>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

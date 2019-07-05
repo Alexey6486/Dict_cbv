@@ -1,0 +1,58 @@
+{% extends "userapp/base.html" %}
+{% load static %}
+
+{% block back %}
+    <li class="nav-item"><a href="{% url 'userapp:userpage' %}" class="nav-link">Back to userpage</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper-userpage">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+
+                <div class="col-md-5 d-none d-md-block my-1">
+                    <div class="shadow p-1">
+                        <h6 class="text-center">Add authors/dictionaries:</h6>
+                        <form action="{% url 'userapp:dictionaries' user_pk=user.pk %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                {% for i in author_form %}
+                                    {{ i }}
+                                {% endfor %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input class="input-author" type="submit" value="Save">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 d-md-none d-sm-block my-1">
+                    <div class="shadow p-1">
+                        <button class="author-btn add-btn">
+                            <a href="{% url 'userapp:addauthor' user_pk=user.pk %}">Add authors/dictionaries</a>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 my-1 no-paddings-x">
+                    <div class="shadow py-1">
+                        <h6 class="text-center">Your authors/dictionaries:</h6>
+                    {% for i in dicts %}
+                        <div class="row m-1">
+                            <button class="author-btn">
+                                <a href="{% url 'userapp:books' user_pk=user.pk author_pk=i.pk %}">{{ i.last_name }}</a>
+                            </button>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

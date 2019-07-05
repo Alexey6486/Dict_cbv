@@ -1,0 +1,62 @@
+{% extends "userapp/base.html" %}
+{% load static %}
+
+{% block back %}
+    <li class="nav-item"><a href="{% url 'userapp:userpage' %}" class="nav-link">Back to userpage</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper-userpage">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-5 my-1">
+                    <div class="accordion-extra" id="accordionOne">
+                        <div class="card card-extra">
+                            <div class="card-header" id="headingOne">
+                                <button class="collapse-btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <h6 class="text-center mb-0">
+                                        Add phrase:
+                                    </h6>
+                                </button>
+                            </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionOne">
+                                <div class="card-body card-body-extra">
+                                    <form action="{% url 'phraseapp:createphrase' user_pk=user.pk %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {% for i in phrase_form %}
+                                                    {{ i }}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input class="input-author" type="submit" value="Save">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-5 my-1 no-paddings-x">
+                    <div class="shadow py-1">
+                        <h6 class="text-center">Your phrases:</h6>
+                        {% for i in phrases %}
+                            <div class="row m-1">
+                                <button class="author-btn">
+                                    <a href="{% url 'phraseapp:editphrase' user_pk=user.pk phrase_pk=i.pk %}">{{ i.phrase }}</a>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

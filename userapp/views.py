@@ -15,7 +15,7 @@ from django.views.generic.list import ListView
 
 # class UserpageListView(ListView): # cbv with two models
 #     template_name = 'userapp/userpage.html'
-#     context_object_name = 'phrases'
+#     context_object_name = 'phrases' # create var so that it is on the page and later we'll take 'phrases' and define it as PhraseModel
 #
 #     def get_queryset(self): # on template calls as objects
 #         return Dictionary.objects.all()
@@ -25,11 +25,17 @@ from django.views.generic.list import ListView
 #         context['phrases'] = PhraseModel.objects.all() # on template calls as phrases
 #         return context
 
+# another way with mixin
+
+# class UserpageListView(Mixins_userapp, View):
+#     def get(self, request, *args, **kwargs):
+#         mixin_data = super(UserpageListView, self)
+#         context = mixin_data.get_context_data()
+#         return render(request, 'userapp/userpage.html', context)
+
 class UserpageListView(Mixins_userapp, View):
-    def get(self, request, *args, **kwargs):
-        mixin_data = super(UserpageListView, self)
-        context = mixin_data.get_context_data()
-        return render(request, 'userapp/userpage.html', context)
+    template = 'userapp/userpage.html'
+
 
 @login_required
 def dictionaries(request, user_pk):

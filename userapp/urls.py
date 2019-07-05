@@ -5,7 +5,7 @@ from django.views import View
 
 app_name = 'userdicturls'
 urlpatterns = [
-    path('', userapp.userpage, name='userpage'),
+    path('', userapp.UserpageListView.as_view(), name='userpage'),
     path('<user_pk>/dictionaries', userapp.dictionaries, name='dictionaries'),
     # path('<user_pk>/dictionaries', userapp.DictionariesListView.as_view(), name='dictionaries'),
     path('<user_pk>/dictionaries/addauthor', userapp.addauthor, name='addauthor'),

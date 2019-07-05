@@ -4,6 +4,6 @@ import phraseapp.views as phraseapp
 
 app_name = 'phrasesurls'
 urlpatterns = [
-    path('<user_pk>/', phraseapp.createphrase, name='createphrase'),
-    path('<user_pk>/<phrase_pk>/', phraseapp.editphrase, name='editphrase')
+    path('<user_pk>/', phraseapp.CreatePhraseView.as_view(), name='createphrase'),
+    path('<user_pk>/<phrase_pk>/', phraseapp.EditPhraseView.as_view(), name='editphrase')
 ]
